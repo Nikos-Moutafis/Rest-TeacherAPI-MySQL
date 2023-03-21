@@ -7,11 +7,11 @@ API Endpoints
 
 The following REST endpoints are implemented:
 
-- GET /teachers/?lastname: Get a list of all teachers in the database
-- GET /teachers/{id}: Get a specific teacher by ID
-- GET /teachers/?lastname = "lastname" : Get a specific teacher by lastname
+- GET  /teachers/?lastname: Get a list of all teachers in the database
+- GET  /teachers/{id}: Get a specific teacher by ID
+- GET  /teachers/?lastname = "lastname" : Get a specific teacher by lastname
 - POST /teachers: Create a new teacher
-- PUT /teachers/{id}: Update an existing teacher
+- PUT  /teachers/{id}: Update an existing teacher
 - DELETE /teachers/{id}: Delete a teacher by ID
 
 Technologies Used:
