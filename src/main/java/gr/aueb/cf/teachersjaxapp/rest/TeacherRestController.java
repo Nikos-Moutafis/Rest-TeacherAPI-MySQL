@@ -26,12 +26,14 @@ public class TeacherRestController {
             teachers = teacherService.getTeachersByLastname(lastname);
 
             if (teachers.size() == 0){
-                return Response.status(Response.Status.BAD_REQUEST)
+                return Response
+                        .status(Response.Status.BAD_REQUEST)
                         .entity("Bad Request")
                         .build();
             }
 
-            return Response.status(Response.Status.OK)
+            return Response
+                    .status(Response.Status.OK)
                     .entity(teachers)
                     .build();
         }catch (TeacherDAOException e){
@@ -55,11 +57,13 @@ public class TeacherRestController {
                         .build();
             }
 
-            return Response.status(Response.Status.OK)
+            return Response
+                    .status(Response.Status.OK)
                     .entity(teacher)
                     .build();
         }catch (TeacherDAOException e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity("Internal Server Error")
                     .build();
         }
@@ -93,7 +97,8 @@ public class TeacherRestController {
                     .build();
 
         }catch (TeacherDAOException e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity("Internal Server Error")
                     .build();
         }

@@ -17,8 +17,8 @@ public class DBUtil {
 
     static {
         ds.setUrl("jdbc:mysql://localhost:3306/Teachersdb?serverTimeZone=UTC");
-        ds.setUsername("");
-        ds.setPassword(System.getenv(""));
+        ds.setUsername("nikos");
+        ds.setPassword(System.getenv("TS_USER_PASSWORD"));
         ds.setInitialSize(8);
         ds.setMaxTotal(32);
         ds.setMinIdle(8);
