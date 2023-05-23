@@ -1,17 +1,17 @@
 # Rest-TeacherAPI-MySQL
 
-This is a Java-based REST API that allow clients to perform CRUD (Create, Read, Update, Delete)operations on teachers who are stored
+This is a Java-based REST API that allows clients to perform CRUD (Create, Read, Update, Delete) operations on teachers who are stored
 in a MySQL database.The REST endpoints are designed to allow clients to interact 
-with the database through standard HTTP methods such as GET, POST, PUT, and DELETE. 
+with the database through standard HTTP methods such as GET, POST, PUT, and DELETE 
 API Endpoints
 
 The following REST endpoints are implemented:
 
-- GET /teachers/?lastname: Get a list of all teachers in the database
-- GET /teachers/{id}: Get a specific teacher by ID
-- GET /teachers/?lastname = "lastname" : Get a specific teacher by lastname
+- GET  /teachers/?lastname: Get a list of all teachers in the database
+- GET  /teachers/{id}: Get a specific teacher by ID
+- GET  /teachers/?lastname = "lastname" : Get a specific teacher by lastname
 - POST /teachers: Create a new teacher
-- PUT /teachers/{id}: Update an existing teacher
+- PUT  /teachers/{id}: Update an existing teacher
 - DELETE /teachers/{id}: Delete a teacher by ID
 
 Technologies Used:
