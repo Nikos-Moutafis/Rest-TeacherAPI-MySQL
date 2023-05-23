@@ -49,7 +49,8 @@ public class TeacherRestController {
             Teacher teacher = teacherService.getTeacherById(teacherId);
 
             if (teacher == null){
-                return Response.status(Response.Status.BAD_REQUEST)
+                return Response
+                        .status(Response.Status.BAD_REQUEST)
                         .entity("Bad Request")
                         .build();
             }
@@ -73,7 +74,8 @@ public class TeacherRestController {
             Teacher teacher = teacherService.insertTeacher(dto);
 
             if (teacher == null){
-                return Response.status(Response.Status.BAD_REQUEST)
+                return Response
+                        .status(Response.Status.BAD_REQUEST)
                         .entity("Bad Request")
                         .build();
             }
@@ -82,11 +84,14 @@ public class TeacherRestController {
                     teacher.getFirstname(),
                     teacher.getLastname()
             );
+
             UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
 
-            return Response.created(uriBuilder.path(Integer.toString(teacherDTO.getId())).build())
+            return Response
+                    .created(uriBuilder.path(String.valueOf(teacher.getId())).build())
                     .entity(teacherDTO)
                     .build();
+
         }catch (TeacherDAOException e){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity("Internal Server Error")
