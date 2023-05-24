@@ -104,30 +104,35 @@ public class TeacherRestController {
         }
     }
 
-    @Path("/{teacherId}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateTeacher(TeacherDTO teacherDTO,@PathParam("teacherId") int teacherId){
+    @Path("/{teacherId}")
+    public Response updateTeacher(@PathParam("teacherId") int teacherId,TeacherDTO dto) {
         try {
-            teacherDTO.setId(teacherId);
-            Teacher teacher = teacherService.updateTeacher(teacherDTO);
+            dto.setId(teacherId);
+            Teacher teacher = teacherService.updateTeacher(dto);
 
-            TeacherDTO updatedTeacher = new TeacherDTO(
-                    teacher.getId(),
-                    teacher.getFirstname(),
-                    teacher.getLastname()
-            );
+            TeacherDTO  teacherDTO = new TeacherDTO(teacher.getId(), teacher.getFirstname(), teacher.getLastname());
 
-            return Response.status(Response.Status.OK)
-                    .entity(updatedTeacher)
+            return Response
+                    .status(Response.Status.OK)
+                    .entity(teacherDTO)
                     .build();
-        }catch (TeacherDAOException | TeacherNotFoundException e){
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Bad Request")
+        }catch (TeacherDAOException  ex){
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Internal Server error")
+                    .build();
+
+        }catch (TeacherNotFoundException exception) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("Teacher Not found")
                     .build();
         }
     }
+
 
     @Path("/{teacherId}")
     @Produces(MediaType.APPLICATION_JSON)
