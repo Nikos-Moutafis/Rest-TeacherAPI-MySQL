@@ -130,27 +130,31 @@ public class TeacherRestController {
     }
 
     @Path("/{teacherId}")
-    @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteTeacher(@PathParam("teacherId")int teacherId){
+    @DELETE
+    public Response deleteTeacher(@PathParam("teacherId") int teacherId) {
         try {
             Teacher teacher = teacherService.getTeacherById(teacherId);
+
             teacherService.deleteTeacher(teacherId);
 
-            TeacherDTO deletedTeacherDTO = new TeacherDTO(
-                    teacher.getId(),teacher.getFirstname(),teacher.getLastname()
-            );
+            TeacherDTO dto = new TeacherDTO(teacher.getId(),teacher.getFirstname(), teacher.getLastname());
 
-            return Response.status(Response.Status.OK)
-                    .entity(deletedTeacherDTO)
+            return Response
+                    .status(Response.Status.OK)
+                    .entity(dto)
                     .build();
-        }catch (TeacherDAOException e){
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Internal Server Error")
+
+        }catch (TeacherDAOException  ex){
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Internal Server error")
                     .build();
-        }catch (TeacherNotFoundException e1){
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("Teacher Not Found")
+
+        }catch (TeacherNotFoundException exception) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity("Teacher Not found")
                     .build();
         }
     }
